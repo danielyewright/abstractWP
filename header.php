@@ -56,5 +56,3 @@
             </div> <!-- end triggers -->
         </div>
     </header> <!-- end header -->
-
-    <section id="bricks">

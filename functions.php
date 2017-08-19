@@ -113,6 +113,14 @@ function abstract_widgets_init() {
 }
 add_action( 'widgets_init', 'abstract_widgets_init' );
 
+function special_nav_class ($classes, $item) {
+    if (in_array('current-menu-item', $classes) ){
+        $classes[] = 'current ';
+    }
+    return $classes;
+}
+add_filter('nav_menu_css_class' , 'special_nav_class' , 10 , 2);
+
 /**
  * Enqueue scripts and styles.
  */
