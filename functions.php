@@ -59,6 +59,20 @@ if ( ! function_exists( 'abstract_setup' ) ) :
 			'caption',
 		) );
 
+        /**
+         * Enable support for Post Formats.
+         * See https://developer.wordpress.org/themes/functionality/post-formats/
+         */
+        add_theme_support( 'post-formats', array(
+            'aside',
+            'image',
+            'video',
+            'quote',
+            'link',
+            'audio',
+            'gallery'
+        ) );
+
 		// Set up the WordPress core custom background feature.
 		add_theme_support( 'custom-background', apply_filters( 'abstract_custom_background_args', array(
 			'default-color' => 'ffffff',
@@ -120,6 +134,22 @@ function special_nav_class ($classes, $item) {
     return $classes;
 }
 add_filter('nav_menu_css_class' , 'special_nav_class' , 10 , 2);
+
+/**
+ * Filter the except length to 20 words.
+ *
+ * @param int $length Excerpt length.
+ * @return int (Maybe) modified excerpt length.
+ */
+function custom_excerpt_length( $length ) {
+    return 40;
+}
+add_filter( 'excerpt_length', 'custom_excerpt_length', 999 );
+
+function custom_excerpt_more( $more ) {
+    return '.';
+}
+add_filter( 'excerpt_more', 'custom_excerpt_more' );
 
 /**
  * Enqueue scripts and styles.
